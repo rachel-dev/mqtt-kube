@@ -28,8 +28,8 @@ import (
 /*	"github.com/tech-sketch/mqtt-kube-operator/handlers"
 	"github.com/tech-sketch/mqtt-kube-operator/reporters"
 */
-        "mqtt-kube-operator/handlers"
-	"mqtt-kube-operator/reporters"
+	"github.com/xdk-rachel/mqtt-kube/handlers"
+	"github.com/xdk-rachel/mqtt-kube/reporters"
 
 )
 

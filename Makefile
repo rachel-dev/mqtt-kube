@@ -16,6 +16,7 @@ TGTDIR:=`go list ./... | grep -v mock`
 all: clean deps test cross-compile docker-build
 deps:
 	@echo "---deps---"
+	$(GOGET) github.com/xdk-rachel/mqtt-kube
 	$(GOGET) k8s.io/client-go/...
 	$(GOGET) github.com/eclipse/paho.mqtt.golang
 	$(GOGET) go.uber.org/zap
@@ -51,7 +52,7 @@ clean:
 	rm -rf mock/*.go
 run:
 	@echo "---run---"
-	@echo "MQTT_USE_TLS=${MQTT_USE_TLS}"
+#	@echo "MQTT_USE_TLS=${MQTT_USE_TLS}"
 	@echo "KUBE_CONF_PATH=${KUBE_CONF_PATH}"
 	@echo "MQTT_USERNAME=${MQTT_USERNAME}"
 	@echo "MQTT_PASSWORD=${MQTT_PASSWORD}"
@@ -60,10 +61,10 @@ run:
 	@echo "DEVICE_TYPE=${DEVICE_TYPE}"
 	@echo "DEVICE_ID=${DEVICE_ID}"
 	@echo "REPORT_INTERVAL_SEC=${REPORT_INTERVAL_SEC}"
-	@echo "USE_DEPLOYMENT_STATE_REPORTER=${USE_DEPLOYMENT_STATE_REPORTER}"
-	@echo "USE_POD_STATE_REPORTER=${USE_DEPLOYMENT_POD_REPORTER}"
-	@echo "REPORT_TARGET_LABEL_KEY=${REPORT_TARGET_LABEL_KEY}"
-	@echo "LOG_LEVEL=${LOG_LEVEL}"
+#	@echo "USE_DEPLOYMENT_STATE_REPORTER=${USE_DEPLOYMENT_STATE_REPORTER}"
+#	@echo "USE_POD_STATE_REPORTER=${USE_DEPLOYMENT_POD_REPORTER}"
+#	@echo "REPORT_TARGET_LABEL_KEY=${REPORT_TARGET_LABEL_KEY}"
+#	@echo "LOG_LEVEL=${LOG_LEVEL}"
 	$(GOBUILD) -o $(NAME) -v
 	./$(NAME)
 cross-compile:
