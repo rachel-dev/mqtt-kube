@@ -1,0 +1,12 @@
+language: go
+sudo: false
+go:
+  - "1.10.x"
+  - "1.11.x"
+  - master
+install:
+  - make deps test-deps mock-gen
+script:
+  - go vet $(go list ./... | grep -v mock)
+  - diff <(golint $(go list ./... | grep -v mock) | grep -v vendor) <(printf "")
+  - go test $(go list ./... | grep -v mock)
